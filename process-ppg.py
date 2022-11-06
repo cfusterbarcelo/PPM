@@ -22,9 +22,12 @@ import wfdb
 import heartpy as hp
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 sf = 125
+# Window size that we want in seconds (20, 30,...)
 window_size = 20
+# Total duration of the PPG sample, in this case, 20min
 ppg_duration = 1200
 init_window = 0
 
@@ -52,13 +55,15 @@ def mean_peak_dist(peaks):
             dist.append(d)
     return np.mean(dist)
 
-def matrix(mean_dist, peaks, norm_ppg, init_window, window_samp):
-    all_segments = 0
+def building_matrix(mean_dist, peaks, norm_ppg, init_window, window_samp):
+    all_segments = []
     init_seg = int(0.2 * mean_dist)
     fin_seg = int(1.3 * mean_dist)
+    peaks = np.asarray(peaks)
+    idx = np.where((peaks > init_window) & (peaks<init_window + window_samp))[0]
     # We need to grab a certain number of peaks depending on the window
     # How many peaks are there in the selected window?
-    for peak in peaks[init_window:int(init_window)]:
+    for peak in peaks[idx]:
         if peak - init_seg < 0:
             segment = norm_ppg[0:peak + fin_seg]
         else:
@@ -68,9 +73,13 @@ def matrix(mean_dist, peaks, norm_ppg, init_window, window_samp):
         zeros = np.zeros(int(all_segments[1].shape[0])-int(all_segments[0].shape[0]))[:, np.newaxis]
         new_segment = np.concatenate((zeros, all_segments[0]))
         all_segments[0] = new_segment
+    # Removing last segment to compute matrix in case sizes do not match
+    if len(all_segments[-1])<len(all_segments[-2]):
+        all_segments.pop()
     try:
         matrix = np.concatenate(all_segments, 1)
     except ValueError:
+        print("MATRIX CANNOT BE COMPUTED!!!!")
         return None
     return matrix.T
 
@@ -112,14 +121,19 @@ for key in users_ppg.keys():
     
     peaks = users_ppg.get(key)[0]
     ppg = users_ppg.get(key)[1]
-    window_samp = (window_size*len(ppg))/ppg_duration
+    window_samp = int((window_size*len(ppg))/ppg_duration)
 
     norm_ppg = normalise(ppg)
     mean_dist = mean_peak_dist(peaks)
-
+    i=0
     while len(norm_ppg):
         if (init_window >=(len(norm_ppg)-window_samp)): break
 
-
+        matrix = building_matrix(mean_dist, peaks, norm_ppg, init_window, window_samp)
+        norm_matrix = normalise(matrix)
+        sns.heatmap(norm_matrix, xticklabels=False, yticklabels=False)
+        plt.savefig('ppms/ppm' + str(i))
+        plt.close('all')
         init_window += window_samp
+        i+=1
 
