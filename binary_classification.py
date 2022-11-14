@@ -1,3 +1,5 @@
+#!/lhome/ext/uc3m057/uc3m0571/miniconda3/envs/ELEKTRA/bin/python
+# -*- coding: utf-8 -*-
 ''''''
 '''_______________________________________________
     Python file to perform BINARY classification
@@ -21,11 +23,12 @@ import tensorflow as tf
 from matplotlib import pyplot as plt
 import numpy as np
 import seaborn as sns
-from utilities import obtain_metrics, plotting_metrics, calculating_metrics
+# from utilities import plotting_metrics, calculating_metrics
+import sys
 
 
 # VARS for each CNN launched to change depending on the DDBB
-epochs_num = 1
+epochs_num = 100
 epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
@@ -33,13 +36,19 @@ batchsize = 32
 
 
 # To run it from the iMac
-current_dir = pathlib.Path(__file__).resolve()
-train_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Train/')
-test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
+# current_dir = pathlib.Path(__file__).resolve()
+# train_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Train/')
+# test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-results_path = '/lhome/ext/uc3m0571/PPM/Results/'
-pkl_path = '/lhome/ext/uc3m0571/PPM/Results/'
+train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF/Train/'
+test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF/Test/'
+results_path = '/lhome/ext/uc3m0571/PPM/Results/MimicPerformAF/test03/'
+output_file = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/test03/test03.txt'
+
+orig_stdout = sys.stdout
+f = open(output_file, 'w')
+sys.stdout = f
 
 # ==== DATA INICIALIZATION ====
 
@@ -99,19 +108,19 @@ with strategy.scope():
                         tf.keras.metrics.AUC()])
 
 # Save after each epoch
-SAEE_file = results_path + 'saee'
-model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
-    filepath= SAEE_file,
-    save_weights_only=True,
-    monitor='val_accuracy',
-    mode='max',
-    save_freq = 'epoch',
-    save_best_only=True)
+# SAEE_file = results_path + 'saee'
+# model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+#     filepath= SAEE_file,
+#     save_weights_only=True,
+#     monitor='val_accuracy',
+#     mode='max',
+#     save_freq = 'epoch',
+#     save_best_only=True)
 
-log_dir = results_path + 'log'
-tensorboard_callback = tf.keras.callbacks.TensorBoard(
-    log_dir=log_dir, 
-    histogram_freq=1)
+# log_dir = results_path + 'log'
+# tensorboard_callback = tf.keras.callbacks.TensorBoard(
+#     log_dir=log_dir, 
+#     histogram_freq=1)
 
 train_history = model.fit(
     x = train_dataset,
@@ -119,8 +128,8 @@ train_history = model.fit(
     epochs=epochs_num,
     steps_per_epoch=len(train_dataset)//batchsize,
     verbose=1,
-    validation_data=validation_dataset,
-    callbacks=[model_checkpoint_callback, tensorboard_callback]
+    validation_data=validation_dataset
+    # callbacks=[model_checkpoint_callback, tensorboard_callback]
 )
 
 # ====== SAVE AND TEST THE MODEL  ======
@@ -133,6 +142,70 @@ model.summary()
 
 
 # ===== METRICS CALCULATION ===========
+def obtain_metrics(conf_m):
+    fp = conf_m.sum(axis=0) - np.diag(conf_m)
+    fn = conf_m.sum(axis=1) - np.diag(conf_m)
+    tp = np.diag(conf_m)
+    tn = conf_m.sum() - (fp + fn + tp)
+    fp = fp.astype(float)
+    fn = fn.astype(float)
+    tp = tp.astype(float)
+    tn = tn.astype(float)
+    fp_n = np.nan_to_num(fp)
+    fn_n = np.nan_to_num(fn)
+    tp_n = np.nan_to_num(tp)
+    tn_n = np.nan_to_num(tn)
+    return fp_n, fn_n, tp_n, tn_n
+
+def plotting_metrics(to_plot, results_path):
+    plt.figure()
+    plt.title(str(to_plot))
+    plt.xlabel('epochs')
+    plt.savefig(results_path + str(to_plot))
+    plt.close()
+
+def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, results_path):
+    datagen = tf.keras.preprocessing.image.ImageDataGenerator(validation_split=0.1, rescale=1. / 255)
+    dataset = datagen.flow_from_directory(dataset_path,
+                                            target_size=(120,160),
+                                            class_mode='binary',
+                                            shuffle=False,
+                                            seed=0,
+                                            subset=dataset_subset)
+    predictions = model.predict(dataset)
+    y_pred = np.argmax(predictions, axis=1)
+    y_true = dataset.classes
+    conf_m = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(20, 20))
+    df_cm = pd.DataFrame(conf_m)
+    sns.set(font_scale=1)  # for label size
+    sns.heatmap(df_cm, annot=True, fmt='g')  # font size
+    plt.savefig(results_path + dataset_name +'-confusion-matrix')
+    plt.close()
+    #Obtaining TP, FP, TN and FN and store it in a dictionary
+    fp, fn, tp, tn = obtain_metrics(conf_m)
+    far = fp/ np.nan_to_num((fp + tn)) * 100
+    frr = fn / np.nan_to_num((fn + tp)) * 100
+    metrics = {
+        'fp': fp,
+        'fp_sum': sum(fp), 
+        'fn': fn,
+        'fn_sum': sum(fn),
+        'tp': tp,
+        'tp_sum': sum(tp),
+        'tn': tn,
+        'tn_sum': sum(tn),
+        'far': far,
+        'far_mean': np.mean(far),
+        'frr': frr,
+        'frr_mean': np.mean(frr)
+    }
+    pkl_file = results_path + dataset_name + '.pkl'
+    with open(pkl_file, 'wb') as handle:
+        pickle.dump(metrics, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    return metrics
+
+
 accuracy = np.asarray(train_history.history['accuracy'])
 val_accuracy = np.asarray(train_history.history['val_accuracy'])
 loss = np.asarray(train_history.history['loss'])

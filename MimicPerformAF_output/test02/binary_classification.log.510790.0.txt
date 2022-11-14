@@ -1,0 +1,32 @@
+000 (510790.000.000) 2022-11-14 15:47:35 Job submitted from host: <147.156.116.133:9618?addrs=147.156.116.133-9618&alias=cm02.ific.uv.es&noUDP&sock=schedd_1005160_bb9c>
+...
+040 (510790.000.000) 2022-11-14 15:47:53 Started transferring input files
+	Transferring to host: <147.156.116.174:9618?addrs=147.156.116.174-9618&alias=mlwn20.ific.uv.es&noUDP&sock=slot2_4178_8763_67>
+...
+040 (510790.000.000) 2022-11-14 15:47:53 Finished transferring input files
+...
+001 (510790.000.000) 2022-11-14 15:47:54 Job executing on host: <147.156.116.174:9618?addrs=147.156.116.174-9618&alias=mlwn20.ific.uv.es&noUDP&sock=startd_3178_6c11>
+...
+006 (510790.000.000) 2022-11-14 15:48:03 Image size of job updated: 198048
+	194  -  MemoryUsage of job (MB)
+	198048  -  ResidentSetSize of job (KB)
+...
+006 (510790.000.000) 2022-11-14 15:52:10 Image size of job updated: 53814420
+	194  -  MemoryUsage of job (MB)
+	198056  -  ResidentSetSize of job (KB)
+...
+004 (510790.000.000) 2022-11-14 15:52:10 Job was evicted.
+	(0) CPU times
+		Usr 0 00:05:35, Sys 0 00:00:22  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	8324  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated Assigned
+	   Cpus                 :     1.51        1        32 
+	   Disk (KB)            :    37          10 380624274 
+	   Gpus (Average)       :                 1         1 "GPU-6908d76e"
+	   Memory (MB)          :   194           1    231251 
+...
+009 (510790.000.000) 2022-11-14 15:52:10 Job was aborted.
+	via condor_rm (by user uc3m0571)
+...
