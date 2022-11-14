@@ -13,7 +13,15 @@ __________________________________________________
 __________________________________________________'''
 
 import numpy as np
+from matplotlib import pyplot as plt
+import tensorflow as tf
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import pickle
 
+
+
+# == PROCESS PPG AND OBTAIN PPM ==
 def normalise(signal):
     a, b = -1, 1
     c = b - a
@@ -63,3 +71,67 @@ def building_matrix(mean_dist, peaks, norm_ppg, init_window, window_samp):
         print("MATRIX CANNOT BE COMPUTED!!!!")
         return None
     return matrix.T
+
+# == CNN CLASSIFICATION ==
+def obtain_metrics(conf_m):
+    fp = conf_m.sum(axis=0) - np.diag(conf_m)
+    fn = conf_m.sum(axis=1) - np.diag(conf_m)
+    tp = np.diag(conf_m)
+    tn = conf_m.sum() - (fp + fn + tp)
+    fp = fp.astype(float)
+    fn = fn.astype(float)
+    tp = tp.astype(float)
+    tn = tn.astype(float)
+    fp_n = np.nan_to_num(fp)
+    fn_n = np.nan_to_num(fn)
+    tp_n = np.nan_to_num(tp)
+    tn_n = np.nan_to_num(tn)
+    return fp_n, fn_n, tp_n, tn_n
+
+def plotting_metrics(to_plot, results_path):
+    plt.figure()
+    plt.title(str(to_plot))
+    plt.xlabel('epochs')
+    plt.savefig(results_path + str(to_plot))
+    plt.close()
+
+def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, results_path):
+    datagen = tf.keras.preprocessing.image.ImageDataGenerator(validation_split=0.1, rescale=1. / 255)
+    dataset = datagen.flow_from_directory(dataset_path,
+                                            target_size=(120,160),
+                                            class_mode='binary',
+                                            shuffle=False,
+                                            seed=0,
+                                            subset=dataset_subset)
+    predictions = model.predict(dataset)
+    y_pred = np.argmax(predictions, axis=1)
+    y_true = dataset.classes
+    conf_m = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(20, 20))
+    df_cm = pd.DataFrame(conf_m)
+    sns.set(font_scale=1)  # for label size
+    sns.heatmap(df_cm, annot=True, fmt='g')  # font size
+    plt.savefig(results_path + dataset_name +'-confusion-matrix')
+    plt.close()
+    #Obtaining TP, FP, TN and FN and store it in a dictionary
+    fp, fn, tp, tn = obtain_metrics(conf_m)
+    far = fp/ np.nan_to_num((fp + tn)) * 100
+    frr = fn / np.nan_to_num((fn + tp)) * 100
+    metrics = {
+        'fp': fp,
+        'fp_sum': sum(fp), 
+        'fn': fn,
+        'fn_sum': sum(fn),
+        'tp': tp,
+        'tp_sum': sum(tp),
+        'tn': tn,
+        'tn_sum': sum(tn),
+        'far': far,
+        'far_mean': np.mean(far),
+        'frr': frr,
+        'frr_mean': np.mean(frr)
+    }
+    pkl_file = results_path + dataset_name + '.pkl'
+    with open(pkl_file, 'wb') as handle:
+        pickle.dump(metrics, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    return metrics

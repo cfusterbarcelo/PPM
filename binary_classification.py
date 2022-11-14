@@ -19,14 +19,18 @@ __________________________________________________'''
 import pathlib
 import tensorflow as tf
 from matplotlib import pyplot as plt
+import numpy as np
+import seaborn as sns
+from utilities import obtain_metrics, plotting_metrics, calculating_metrics
+
 
 # VARS for each CNN launched to change depending on the DDBB
 epochs_num = 1
 epochs_str = str(epochs_num)+'e'
 num_classes = 1
-bpf = 5
 ddbb = 'MimicPerformAF'
 batchsize = 32
+
 
 # To run it from the iMac
 current_dir = pathlib.Path(__file__).resolve()
@@ -34,7 +38,8 @@ train_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF
 test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-
+results_path = '/lhome/ext/uc3m0571/PPM/Results/'
+pkl_path = '/lhome/ext/uc3m0571/PPM/Results/'
 
 # ==== DATA INICIALIZATION ====
 
@@ -93,12 +98,63 @@ with strategy.scope():
                         tf.keras.metrics.FalseNegatives(),
                         tf.keras.metrics.AUC()])
 
+# Save after each epoch
+SAEE_file = results_path + 'saee'
+model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+    filepath= SAEE_file,
+    save_weights_only=True,
+    monitor='val_accuracy',
+    mode='max',
+    save_freq = 'epoch',
+    save_best_only=True)
+
+log_dir = results_path + 'log'
+tensorboard_callback = tf.keras.callbacks.TensorBoard(
+    log_dir=log_dir, 
+    histogram_freq=1)
+
 train_history = model.fit(
     x = train_dataset,
     batch_size=batchsize,
     epochs=epochs_num,
     steps_per_epoch=len(train_dataset)//batchsize,
     verbose=1,
-    validation_data=validation_dataset
+    validation_data=validation_dataset,
+    callbacks=[model_checkpoint_callback, tensorboard_callback]
 )
 
+# ====== SAVE AND TEST THE MODEL  ======
+model_file = results_path + 'model' + ddbb + epochs_str
+model.save(model_file)
+
+scores = model.evaluate(test_dataset, verbose=1)
+print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+model.summary()
+
+
+# ===== METRICS CALCULATION ===========
+accuracy = np.asarray(train_history.history['accuracy'])
+val_accuracy = np.asarray(train_history.history['val_accuracy'])
+loss = np.asarray(train_history.history['loss'])
+val_loss = np.asarray(train_history.history['val_loss'])
+tp = np.asarray(train_history.history['true_positives'])
+tn = np.asarray(train_history.history['true_negatives'])
+fp = np.asarray(train_history.history['false_positives'])
+fn = np.asarray(train_history.history['false_negatives'])
+auc = train_history.history['auc']
+
+
+plotting_metrics(auc)
+plotting_metrics(accuracy)
+plotting_metrics(val_accuracy)
+plotting_metrics(loss)
+plotting_metrics(val_loss)
+
+training = 'training'
+validation = 'validation'
+train_metrics = calculating_metrics(train_path, training, training, model, results_path)
+print(train_metrics)
+validation_metrics = calculating_metrics(train_path, validation, validation, model, results_path)
+print(validation_metrics)
+test_metrics = calculating_metrics(test_path, None, 'testing', model, results_path)
+print(test_metrics)
