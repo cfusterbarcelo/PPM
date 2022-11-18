@@ -2,9 +2,9 @@ Universe        = vanilla
 
 Executable      = binary_classification.py
 
-Output          = MimicPerformAF_output/test03/binary_classification.out.$(Cluster).$(Process).txt
-Error           = MimicPerformAF_output/test03/binary_classification.error.$(Cluster).$(Process).txt
-Log             = MimicPerformAF_output/test03/binary_classification.log.$(Cluster).$(Process).txt
+Output          = MimicPerformAF_output/Test02/binary_classification.out.$(Cluster).$(Process).txt
+Error           = MimicPerformAF_output/Test02/binary_classification.error.$(Cluster).$(Process).txt
+Log             = MimicPerformAF_output/Test02/binary_classification.log.$(Cluster).$(Process).txt
 
 request_gpus = 1
 
