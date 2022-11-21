@@ -33,12 +33,12 @@ from sklearn.metrics import confusion_matrix
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 
 # VARS for each CNN launched to change depending on the DDBB
-epochs_num = 100
+epochs_num = 50
 epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 32
-test = 'Test04'
+test = 'Test05'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
@@ -257,19 +257,16 @@ from tf_keras_vis.activation_maximization import ActivationMaximization
 import matplotlib.pyplot as plt
 
 def loss(output):
-  return (output[0, 0], output[1, 1])
+  return (output[0, 0])
 
 def model_modifier(m):
     m.layers[-1].activation = tf.keras.activations.linear
 
-# Generate a random seed for each activation
-seed_input = tf.random.uniform((2, 120, 160, 3), 0, 255)
-
 # Initialize Activation Maximization
 visualize_activation = ActivationMaximization(model, model_modifier)
 
-# Generate a random seed for each activation
-seed_input = tf.random.uniform((10, 28, 28, 1), 0, 255)
+# Generate a random seed for each activation - noise
+seed_input = tf.random.uniform((1, 120, 160, 3), 0, 1)
 
 # Generate activations and convert into images
 activations = visualize_activation(loss, seed_input=seed_input, steps=512)
@@ -280,4 +277,5 @@ for i in range(0, len(images)):
   visualization = images[i].reshape(120,160)
   plt.imshow(visualization)
   plt.title(f'Target = {i}')
+  plt.savefig(results_path + dataset_name +'-act-max.png')
   plt.show()
