@@ -38,7 +38,7 @@ epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 32
-test = 'Test02'
+test = 'Test04'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
@@ -46,8 +46,8 @@ test = 'Test02'
 # test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF/Train/'
-test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF/Test/'
+train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/Train/'
+test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/Test/'
 results_path = '/lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/' + test + '/'
 output_path = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/' + test + '/'
 output_file = output_path + test + '-outcome.txt'
