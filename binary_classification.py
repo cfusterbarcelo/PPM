@@ -248,3 +248,36 @@ print('=========================================================================
 test_metrics = calculating_metrics(test_path, None, 'testing', model, results_path)
 print(test_metrics)
 print('===================================================================================')
+
+########################### EXPLAINABLE AI
+
+# pip install tf-keras-vis
+
+from tf_keras_vis.activation_maximization import ActivationMaximization
+import matplotlib.pyplot as plt
+
+def loss(output):
+  return (output[0, 0], output[1, 1])
+
+def model_modifier(m):
+    m.layers[-1].activation = tf.keras.activations.linear
+
+# Generate a random seed for each activation
+seed_input = tf.random.uniform((2, 120, 160, 3), 0, 255)
+
+# Initialize Activation Maximization
+visualize_activation = ActivationMaximization(model, model_modifier)
+
+# Generate a random seed for each activation
+seed_input = tf.random.uniform((10, 28, 28, 1), 0, 255)
+
+# Generate activations and convert into images
+activations = visualize_activation(loss, seed_input=seed_input, steps=512)
+images = [activation.astype(np.float32) for activation in activations]
+
+# Visualize each image
+for i in range(0, len(images)):
+  visualization = images[i].reshape(120,160)
+  plt.imshow(visualization)
+  plt.title(f'Target = {i}')
+  plt.show()
