@@ -19,4 +19,4 @@ The database used to train and test this model is the Mimic Perform AF separated
 
 Resulting image where the activation can be seen is the one following:
 
-![alt text](https://github.com/cfusterbarcelo/PPM/tree/main/MimicPerformAF_output/Test05/act-max.png)
+![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/MimicPerformAF_output/Test05/act-max.png)
