@@ -1,8 +1,17 @@
 # Detection of AF with PPM
 In this project, the main goal is to detect AF over Photoplethysmogram (PPG) signals converted in to a matrix following ELEKTRA's pipeline. 
+AF is recognized in the electrocardiogram (ECG) as an irregularly irregular rhythm lasting more than 30 s, with no discernible P-waves preceding the QRS complex [[Paulus Kirchof et al, 2016](https://academic.oup.com/eurheartj/article/37/38/2893/2334964?login=true)]. It does not affect equally to the same population. Hence, the most affected population is white men [[Massimo Zoni-Berisso et al, 2014](https://www.dovepress.com/epidemiology-of-atrial-fibrillation-european-perspective-peer-reviewed-fulltext-article-CLEP)].
+
+A photoplethysmogram is a pulse pressure signal resulting from the propagation of blood pressure pulses along arterial blood vessels. Measured on the periphery, it carries rich information about the cardiac activity, cardiovascular condition, the interaction between parasympathetic and sympathetic nervous systems, and hemoglobin level [[A. Resit Kavsaoglu et al, 2015](https://www.sciencedirect.com/science/article/pii/S1568494615002227?via%3Dihub)].
+
+In a PPG signal, AF is manifested as varying pulse-to pulse intervals and pulse morphologies. On the other hand, a normal sinus rhythm (NSR) is recognizable through regularly spaced PPG pulses with similar morphologies between consecutive pulses. Recognizing an arrhythmia in a PPG signal can sometimes be challenging in the presence of artifacts. Differences between a PPG signal with AF or non-AF can be seen here ([source](https://www.nature.com/articles/s41746-019-0207-9)):
+
+![alt text](path-to-image)
 
 ## Literature
 The MIMIC III ICU Data is used in the study performed by [Syed Khairul Bashar et al, 2020](https://ieeexplore.ieee.org/abstract/document/9094371) to evaluate AF over with Electrocardiogram (ECG) signals. A Linear Discriminant Analysis (LDA) is the Machine Learning algorithm used to perfom the classification between AF/nonAF users. In their final results, we can see that accuracies close to 100% (98.99%) are achieved when testing with the database. 
+
+A PPG pulse is modeled by a linear combination of a log-normal and two Gaussian waveforms in [Andrius Solosenko et al, 2017](https://www.sciencedirect.com/science/article/pii/S0010482516303365). Hence, based on RR interval information, they model a new PPG pulse. The results show that the model PPG signals closely resemble real signal for sinus rhythm, premature beats, as well as for AF.
 
 ## Datasets
 ### MIMIC PERform AF Dataset
