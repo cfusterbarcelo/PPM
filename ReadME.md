@@ -6,7 +6,7 @@ A photoplethysmogram is a pulse pressure signal resulting from the propagation o
 
 In a PPG signal, AF is manifested as varying pulse-to pulse intervals and pulse morphologies. On the other hand, a normal sinus rhythm (NSR) is recognizable through regularly spaced PPG pulses with similar morphologies between consecutive pulses. Recognizing an arrhythmia in a PPG signal can sometimes be challenging in the presence of artifacts. Differences between a PPG signal with AF or non-AF can be seen here ([source](https://www.nature.com/articles/s41746-019-0207-9)):
 
-![alt text](path-to-image)
+![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/ppg_af_nonaf_dif.png)
 
 ## Literature
 The MIMIC III ICU Data is used in the study performed by [Syed Khairul Bashar et al, 2020](https://ieeexplore.ieee.org/abstract/document/9094371) to evaluate AF over with Electrocardiogram (ECG) signals. A Linear Discriminant Analysis (LDA) is the Machine Learning algorithm used to perfom the classification between AF/nonAF users. In their final results, we can see that accuracies close to 100% (98.99%) are achieved when testing with the database. 
