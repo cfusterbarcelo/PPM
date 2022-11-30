@@ -9,7 +9,7 @@ __________________________________________________
 __________________________________________________
 
 __________________________________________________
-            For this version 1.0
+            For this version 1.1
 __________________________________________________
 ## Database used: MIMIC PERform AF Dataset
 ## Input files: model
@@ -24,7 +24,7 @@ import numpy as np
 import pathlib
 
 results_path = '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/PPM/MimicPerformAF_output/Test05/'
-model_files =  '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/PPM/MimicPerformAF_output/Test05/model'
+model_files =  '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/Models/Test04_model'
 
 # Load a trained model
 model = tf.keras.models.load_model(model_files)
@@ -39,6 +39,7 @@ def model_modifier(m):
 visualize_activation = ActivationMaximization(model, model_modifier)
 
 # Generate a random seed for each activation - noise
+# Set the size image to the image that is being processed after the cropping layer
 seed_input = tf.random.uniform((1, 120, 160, 3), 0, 1)
 
 # Generate activations and convert into images
