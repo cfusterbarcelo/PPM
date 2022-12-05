@@ -6,7 +6,7 @@ A photoplethysmogram is a pulse pressure signal resulting from the propagation o
 
 In a PPG signal, AF is manifested as varying pulse-to pulse intervals and pulse morphologies. On the other hand, a normal sinus rhythm (NSR) is recognizable through regularly spaced PPG pulses with similar morphologies between consecutive pulses. Recognizing an arrhythmia in a PPG signal can sometimes be challenging in the presence of artifacts. Differences between a PPG signal with AF or non-AF can be seen here ([source](https://www.nature.com/articles/s41746-019-0207-9)):
 
-![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/ppg_af_nonaf_dif.png)
+![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/ppg_af_nonaf_dif.png)
 
 ## Literature
 The MIMIC III ICU Data is used in the study performed by [Syed Khairul Bashar et al, 2020](https://ieeexplore.ieee.org/abstract/document/9094371) to evaluate AF over with Electrocardiogram (ECG) signals. A Linear Discriminant Analysis (LDA) is the Machine Learning algorithm used to perfom the classification between AF/nonAF users. In their final results, we can see that accuracies close to 100% (98.99%) are achieved when testing with the database. 
@@ -27,9 +27,9 @@ It is a zenodo dataset download from [here](https://zenodo.org/record/5815074). 
 The filtering and extraction of R-peaks it is almost impossible as the signal is too noisy. Even after applying a bandpass filter to the PPG signal, it has been almost impossible to process the file with the [heartpy library](https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/heartpy.heartpy.html#heartpy-main) as it is done for other datasets. 
 
 Resulting images from the analysis of this database can be found as:
-* PPG extracted from the mat file as it comes in [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg.png).
-* PPG signal after applying the bandpass filter [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg_bandpass_filter.png).
-* PPG signal with its detected R peaks by the heartpy library [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg_peaks_extracted.png).
+* PPG extracted from the mat file as it comes in [here](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/mat_ppg.png).
+* PPG signal after applying the bandpass filter [here](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/mat_ppg_bandpass_filter.png).
+* PPG signal with its detected R peaks by the heartpy library [here](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/mat_ppg_peaks_extracted.png).
 
 Thus, this database won't be used for the moment.
 
@@ -42,6 +42,6 @@ Thus, this database won't be used for the moment.
 * __binary_classification.submit__: File needed to run the binary_classification.py file in Artemisa (the server).
 * __activation-maximimsation.py__: Activation Maximisation of a 1-layer CNN is performed in this file. A description of what has been used and the results is provided in its [description file](https://github.com/cfusterbarcelo/PPM/blob/main/MimicPerformAF_output/Test05/Test05-description.md).
 
-The [ppm](https://github.com/cfusterbarcelo/PPM/tree/main/ppms) folder includes an example of how the PPM resulting images are. These are extracted from the _.dat_ and _.hea_ files included in that same folder which are from one random user from the MIMIC PERform AF Dataset. In fact, a PPM image looks like this:
+The [ppm](https://github.com/cfusterbarcelo/PPM/tree/main/images-and-files) folder includes an example of how the PPM resulting images are. These are extracted from the _.dat_ and _.hea_ files included in that same folder which are from one random user from the MIMIC PERform AF Dataset. In fact, a PPM image looks like this:
 
-![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/ppm0.png)
+![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/ppm0.png)
