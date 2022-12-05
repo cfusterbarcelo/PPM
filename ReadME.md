@@ -21,6 +21,18 @@ In "Detecting beats in the photoplethysmogram: benchmarking open-source algorith
 
 It seems that there is not more literature regarding this database. 
 
+### Long-term electrocardiogram and wrist-based photoplethysmogram recordings with annotated atrial fibrillation episodes
+It is a zenodo dataset download from [here](https://zenodo.org/record/5815074). This dataset contains either ECG and PPG signals in a '.mat' file from 8 patients with AF monitored from 5 to 8 days. The PPG signals are considered to be the ones called 'PPG_GREEN' in this file as a 'green LED embedded' was used to record the PPG signal.
+
+The filtering and extraction of R-peaks it is almost impossible as the signal is too noisy. Even after applying a bandpass filter to the PPG signal, it has been almost impossible to process the file with the [heartpy library](https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/heartpy.heartpy.html#heartpy-main) as it is done for other datasets. 
+
+Resulting images from the analysis of this database can be found as:
+* PPG extracted from the mat file as it comes in [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg.png).
+* PPG signal after applying the bandpass filter [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg_bandpass_filter.png).
+* PPG signal with its detected R peaks by the heartpy library [here](https://github.com/cfusterbarcelo/PPM/blob/main/ppms/mat_ppg_peaks_extracted.png).
+
+Thus, this database won't be used for the moment.
+
 ## Files
 
 * __process-ppg.py__: File used to process PPG signals and convert them into the Photoplethysmatrix (PPM). A database of PPG signals must be processed and a new database of PPM images is extracted and obtained from this file. 
