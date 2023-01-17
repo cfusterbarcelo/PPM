@@ -21,8 +21,9 @@ import matplotlib.pyplot as plt
 import heartpy as hp
 from scipy.signal import resample
 
-mat_file = '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/PPG_DDBB/Zenodo-Long-termPPGwithAF/Data/01_PPG_01.mat'
+mat_file = '../../../../Mi unidad/COSEC/PPG/PPG_DDBB/Data_05142020/Data/4001.mat'
 
+mat_file = r"H:/Mi unidad/COSEC/PPG/PPG_DDBB/Data_05142020/Data/4001.mat"
 sf = 100
 
 arrays = {}
