@@ -1,5 +1,5 @@
 # Detection of AF with PPM
-In this project, the main goal is to detect AF over Photoplethysmogram (PPG) signals converted in to a matrix following ELEKTRA's pipeline. 
+In this project, the main goal is to detect Atrial Fibrillation (AF) over Photoplethysmogram (PPG) signals converted in to a matrix following ELEKTRA's pipeline. 
 AF is recognized in the electrocardiogram (ECG) as an irregularly irregular rhythm lasting more than 30 s, with no discernible P-waves preceding the QRS complex [[Paulus Kirchof et al, 2016](https://academic.oup.com/eurheartj/article/37/38/2893/2334964?login=true)]. It does not affect equally to the same population. Hence, the most affected population is white men [[Massimo Zoni-Berisso et al, 2014](https://www.dovepress.com/epidemiology-of-atrial-fibrillation-european-perspective-peer-reviewed-fulltext-article-CLEP)].
 
 A photoplethysmogram is a pulse pressure signal resulting from the propagation of blood pressure pulses along arterial blood vessels. Measured on the periphery, it carries rich information about the cardiac activity, cardiovascular condition, the interaction between parasympathetic and sympathetic nervous systems, and hemoglobin level [[A. Resit Kavsaoglu et al, 2015](https://www.sciencedirect.com/science/article/pii/S1568494615002227?via%3Dihub)].
@@ -15,7 +15,7 @@ A PPG pulse is modeled by a linear combination of a log-normal and two Gaussian 
 
 ## Datasets
 ### MIMIC PERform AF Dataset
-This dataset can be extracted from [here](https://ppg-beats.readthedocs.io/en/latest/datasets/mimic_perform_af/). It contains 20 minutes of data from 19 patients in AF, and 16 patients in normal sinus rhythm (non-AF). It was used to compare performance between AF and normal sinus rhythm.
+This dataset can be extracted from [here](https://ppg-beats.readthedocs.io/en/latest/datasets/mimic_perform_af/). It contains 20 minutes of data from 19 patients in AF, and 16 patients in NSR (non-AF). It was used to compare performance between AF and NSR.
 
 In "Detecting beats in the photoplethysmogram: benchmarking open-source algorithms" by [Peter H. Charlton et al, 2022](https://iopscience.iop.org/article/10.1088/1361-6579/ac826d/meta), this database is tested over different PPG detectors. Achieving great results when detecting the PPG beats. 
 
@@ -32,6 +32,31 @@ Resulting images from the analysis of this database can be found as:
 * PPG signal with its detected R peaks by the heartpy library [here](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/mat_ppg_peaks_extracted.png).
 
 Thus, this database won't be used for the moment.
+
+### UMMC Simband Dataset
+This dataset is available in [Synapse](https://www.synapse.org/#!Synapse:syn23565056/wiki/608635) by petition to download it. There are two publications containing this dataset which are [Atrial Fibrillation Detection from Wrist Photoplethysmography Signals Using Smartwatches](https://biosignal.uconn.edu/wp-content/uploads/sites/2503/2019/10/08_Bashar_2019_ScientificReports.pdf) and [Premature Atrial and Ventricular Contraction Detection using Photoplethysmographic Data from a Smartwatch](https://biosignal.uconn.edu/wp-content/uploads/sites/2503/2020/10/11_Han_2020_sensors.pdf). A code implementation in matlab can be also found in [this Github](https://github.com/Cassey2016/UMass_Simband_Dataset). 
+
+Data from this dataset was provided by the University of Massachusetts Medical School (UMass). The UMass database consists of 37 subjects, 10 of them having AF. All users were performing different activities: 2 minutes of completely sitting still while placing their thumb on the ECG sensor of the Simband, 2 minutes of slow walking, 30 seconds of rest while standing still, 2 minutes of fast walking, 1 minute of rest, 1 minute of up and down arm movement, 1 minute of random wrist movement, 30 seconds of rest while standing, 1 minute of alternating sitting and standing, 2 minutes of going up and down a set of stairs, and 1 minute of deep breathing. Details of the population are in an old non-available webpage. There is not much more information regarding the data or the subjects on it. 
+
+If the data is opened with the [mat4py library](https://pypi.org/project/mat4py/) for python we find that each file from each user contains several entries such as in a dictionary with different data. What this data is, cannot be found in any documentation or paper. For example, to find a PPG signal is almost impossible. What has been found is what seems to be PPG signals of 30 seconds from 8 different sensors:
+```
+f = loadmat(mat_file)
+h_signal = f['data']['physiosignal']['ppg']['h']['signal']
+c_signal = f['data']['physiosignal']['ppg']['c']['signal']
+e_signal = f['data']['physiosignal']['ppg']['e']['signal']
+f_signal = f['data']['physiosignal']['ppg']['f']['signal']
+b_signal = f['data']['physiosignal']['ppg']['b']['signal']
+g_signal = f['data']['physiosignal']['ppg']['g']['signal']
+d_signal = f['data']['physiosignal']['ppg']['d']['signal']
+a_signal = f['data']['physiosignal']['ppg']['a']['signal']
+```
+
+Hence, each one of these entries would represent a PPG signal of 30 seconds taken on the same moment from 8 different seconds. 
+
+The information regarding how to extract and find the PPG signals is very poor. Information regarding what each of these entries is, is not provided.
+
+Moreover, by reading the papers proposed, it has been found that the what is categorised into AF or NSR are segments of the PPG signal, not each of this users. This makes the approach of using this database almost impossible as the work or classification since now, has been done over users and not over segments to avoid classifying users instead of AF. 
+
 
 ## Files
 
