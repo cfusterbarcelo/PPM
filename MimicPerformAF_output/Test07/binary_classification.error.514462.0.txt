@@ -1,0 +1,64 @@
+2023-01-26 14:58:35.223174: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2023-01-26 14:59:35.559613: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcuda.so.1
+2023-01-26 14:59:35.624032: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:18:00.0 name: Tesla V100-PCIE-32GB computeCapability: 7.0
+coreClock: 1.38GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
+2023-01-26 14:59:35.624130: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2023-01-26 14:59:37.039273: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2023-01-26 14:59:37.039457: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2023-01-26 14:59:37.733930: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-01-26 14:59:37.943923: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-01-26 14:59:39.044361: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2023-01-26 14:59:39.236859: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2023-01-26 14:59:42.142731: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2023-01-26 14:59:42.143991: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
+2023-01-26 14:59:42.148653: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-26 14:59:42.443298: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2500000000 Hz
+2023-01-26 14:59:42.457501: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55f43e630750 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2023-01-26 14:59:42.457570: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2023-01-26 14:59:42.473025: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties: 
+pciBusID: 0000:18:00.0 name: Tesla V100-PCIE-32GB computeCapability: 7.0
+coreClock: 1.38GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
+2023-01-26 14:59:42.473090: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2023-01-26 14:59:42.473162: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2023-01-26 14:59:42.473196: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublasLt.so.10
+2023-01-26 14:59:42.473229: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcufft.so.10
+2023-01-26 14:59:42.473261: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcurand.so.10
+2023-01-26 14:59:42.473293: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusolver.so.10
+2023-01-26 14:59:42.473351: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcusparse.so.10
+2023-01-26 14:59:42.473386: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2023-01-26 14:59:42.474194: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
+2023-01-26 14:59:42.474288: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+2023-01-26 14:59:44.746536: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
+2023-01-26 14:59:44.746591: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0 
+2023-01-26 14:59:44.747384: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N 
+2023-01-26 14:59:44.749275: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30131 MB memory) -> physical GPU (device: 0, name: Tesla V100-PCIE-32GB, pci bus id: 0000:18:00.0, compute capability: 7.0)
+2023-01-26 14:59:44.760239: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55f454e8be30 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-01-26 14:59:44.760290: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Tesla V100-PCIE-32GB, Compute Capability 7.0
+2023-01-26 14:59:45.218685: I tensorflow/core/profiler/lib/profiler_session.cc:136] Profiler session initializing.
+2023-01-26 14:59:45.218737: I tensorflow/core/profiler/lib/profiler_session.cc:155] Profiler session started.
+2023-01-26 14:59:45.218774: I tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1365] Profiler found 1 GPUs
+2023-01-26 14:59:45.442398: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcupti.so.10.1
+2023-01-26 14:59:45.545376: E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1415] function cupti_interface_->Subscribe( &subscriber_, (CUpti_CallbackFunc)ApiCallback, this)failed with error CUPTI_ERROR_INSUFFICIENT_PRIVILEGES
+2023-01-26 14:59:45.545490: I tensorflow/core/profiler/lib/profiler_session.cc:172] Profiler session tear down.
+2023-01-26 14:59:45.934590: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2023-01-26 14:59:46.925298: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcublas.so.10
+2023-01-26 14:59:47.776486: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudnn.so.7
+2023-01-26 15:00:02.058704: I tensorflow/core/profiler/lib/profiler_session.cc:136] Profiler session initializing.
+2023-01-26 15:00:02.058751: I tensorflow/core/profiler/lib/profiler_session.cc:155] Profiler session started.
+2023-01-26 15:00:02.059731: E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1415] function cupti_interface_->Subscribe( &subscriber_, (CUpti_CallbackFunc)ApiCallback, this)failed with error CUPTI_ERROR_INSUFFICIENT_PRIVILEGES
+2023-01-26 15:00:03.841249: I tensorflow/core/profiler/lib/profiler_session.cc:71] Profiler session collecting data.
+2023-01-26 15:00:03.848467: I tensorflow/core/profiler/internal/gpu/cupti_collector.cc:228]  GpuTracer has collected 0 callback api events and 0 activity events. 
+2023-01-26 15:00:03.853056: I tensorflow/core/profiler/lib/profiler_session.cc:172] Profiler session tear down.
+2023-01-26 15:00:03.870430: I tensorflow/core/profiler/rpc/client/save_profile.cc:137] Creating directory: /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03
+2023-01-26 15:00:03.897821: I tensorflow/core/profiler/rpc/client/save_profile.cc:143] Dumped gzipped tool data for trace.json.gz to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.trace.json.gz
+2023-01-26 15:00:03.921296: I tensorflow/core/profiler/rpc/client/save_profile.cc:137] Creating directory: /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03
+2023-01-26 15:00:03.929258: I tensorflow/core/profiler/rpc/client/save_profile.cc:143] Dumped gzipped tool data for memory_profile.json.gz to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.memory_profile.json.gz
+2023-01-26 15:00:03.945227: I tensorflow/core/profiler/rpc/client/capture_profile.cc:251] Creating directory: /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03Dumped tool data for xplane.pb to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.xplane.pb
+Dumped tool data for overview_page.pb to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.overview_page.pb
+Dumped tool data for input_pipeline.pb to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.input_pipeline.pb
+Dumped tool data for tensorflow_stats.pb to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.tensorflow_stats.pb
+Dumped tool data for kernel_stats.pb to /lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/Test07/log/train/plugins/profile/2023_01_26_15_00_03/mlwn18.ific.uv.es.kernel_stats.pb
+
+2023-01-26 15:03:13.898572: W tensorflow/python/util/util.cc:348] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.

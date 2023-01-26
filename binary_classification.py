@@ -33,12 +33,12 @@ from sklearn.metrics import confusion_matrix
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 
 # VARS for each CNN launched to change depending on the DDBB
-epochs_num = 50
+epochs_num = 100
 epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 32
-test = 'Test05'
+test = 'Test07'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
@@ -46,11 +46,11 @@ test = 'Test05'
 # test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/Train/'
-test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/Test/'
+train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Train/'
+test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Test/'
 results_path = '/lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/' + test + '/'
 output_path = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/' + test + '/'
-output_file = output_path + test + '-outcome.txt'
+output_file = output_path + test + epochs_str + '-outcome.txt'
 
 orig_stdout = sys.stdout
 f = open(output_file, 'w')
@@ -173,7 +173,17 @@ def plotting_metrics(to_plot, results_path, metric):
     plt.plot(to_plot)
     plt.title(metric)
     plt.xlabel('epochs')
-    plt.savefig(results_path + metric + '.png')
+    plt.savefig(results_path + metric + epochs_str + '.png')
+    plt.close()
+
+def two_plotting_metrics(to_plot1, to_plot2, results_path, metric1, metric2):
+    plt.figure()
+    plt.plot(to_plot1, label = metric1)
+    plt.plot(to_plot2, label = metric2)
+    plt.legend()
+    plt.title(metric1 + ' and ' + metric2)
+    plt.xlabel('epochs')
+    plt.savefig(results_path + metric1 + '-'+ metric2 + epochs_str + '.png')
     plt.close()
 
 def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, results_path):
@@ -234,6 +244,8 @@ plotting_metrics(accuracy, results_path, 'accuracy')
 plotting_metrics(val_accuracy, results_path, 'validation accuracy')
 plotting_metrics(loss, results_path, 'loss')
 plotting_metrics(val_loss, results_path, 'validation loss')
+two_plotting_metrics(accuracy, val_accuracy, results_path, 'train_accuracy', 'validation_accuracy')
+two_plotting_metrics(loss, val_loss, results_path, 'train_loss', 'validation_loss')
 
 training = 'training'
 validation = 'validation'
