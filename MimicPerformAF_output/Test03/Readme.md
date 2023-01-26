@@ -1,4 +1,4 @@
-# Description
+# Test 03 - Description
 Results from running a 1-layer CNN for classifying into AF or NON-af users. The split for training and test has been based on splitting signals instead of users. 
 Therefore, a binary classification has taken place. 
 
