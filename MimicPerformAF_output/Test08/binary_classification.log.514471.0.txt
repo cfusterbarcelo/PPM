@@ -1,0 +1,39 @@
+000 (514471.000.000) 2023-01-26 16:48:17 Job submitted from host: <147.156.116.133:9618?addrs=147.156.116.133-9618&alias=cm02.ific.uv.es&noUDP&sock=schedd_1855690_919d>
+...
+040 (514471.000.000) 2023-01-26 16:48:37 Started transferring input files
+	Transferring to host: <147.156.116.168:9618?addrs=147.156.116.168-9618&alias=mlwn18.ific.uv.es&noUDP&sock=slot2_3963_0aba_1115>
+...
+040 (514471.000.000) 2023-01-26 16:48:37 Finished transferring input files
+...
+001 (514471.000.000) 2023-01-26 16:48:38 Job executing on host: <147.156.116.168:9618?addrs=147.156.116.168-9618&alias=mlwn18.ific.uv.es&noUDP&sock=startd_3058_1cb4>
+...
+006 (514471.000.000) 2023-01-26 16:48:46 Image size of job updated: 201280
+	197  -  MemoryUsage of job (MB)
+	201280  -  ResidentSetSize of job (KB)
+...
+006 (514471.000.000) 2023-01-26 16:52:32 Image size of job updated: 64065456
+	197  -  MemoryUsage of job (MB)
+	201320  -  ResidentSetSize of job (KB)
+...
+040 (514471.000.000) 2023-01-26 16:52:32 Started transferring output files
+...
+040 (514471.000.000) 2023-01-26 16:52:32 Finished transferring output files
+...
+005 (514471.000.000) 2023-01-26 16:52:32 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:03:14, Sys 0 00:00:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:03:14, Sys 0 00:00:13  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	9745  -  Run Bytes Sent By Job
+	9695  -  Run Bytes Received By Job
+	9745  -  Total Bytes Sent By Job
+	9695  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated Assigned
+	   Cpus                 :     1.07        1        32 
+	   Disk (KB)            :    40          10 380624274 
+	   Gpus (Average)       :                 1         1 "GPU-e747a145"
+	   Memory (MB)          :   197           1    231251 
+
+	Job terminated of its own accord at 2023-01-26T15:52:32Z.
+...

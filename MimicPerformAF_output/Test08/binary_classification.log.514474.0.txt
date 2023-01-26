@@ -1,0 +1,43 @@
+000 (514474.000.000) 2023-01-26 16:53:12 Job submitted from host: <147.156.116.133:9618?addrs=147.156.116.133-9618&alias=cm02.ific.uv.es&noUDP&sock=schedd_1855690_919d>
+...
+040 (514474.000.000) 2023-01-26 16:53:16 Started transferring input files
+	Transferring to host: <147.156.116.168:9618?addrs=147.156.116.168-9618&alias=mlwn18.ific.uv.es&noUDP&sock=slot2_3963_0aba_1116>
+...
+040 (514474.000.000) 2023-01-26 16:53:16 Finished transferring input files
+...
+001 (514474.000.000) 2023-01-26 16:53:17 Job executing on host: <147.156.116.168:9618?addrs=147.156.116.168-9618&alias=mlwn18.ific.uv.es&noUDP&sock=startd_3058_1cb4>
+...
+006 (514474.000.000) 2023-01-26 16:53:26 Image size of job updated: 276616
+	263  -  MemoryUsage of job (MB)
+	268424  -  ResidentSetSize of job (KB)
+...
+006 (514474.000.000) 2023-01-26 16:58:26 Image size of job updated: 59102656
+	3693  -  MemoryUsage of job (MB)
+	3781396  -  ResidentSetSize of job (KB)
+...
+006 (514474.000.000) 2023-01-26 16:58:56 Image size of job updated: 64093548
+	3693  -  MemoryUsage of job (MB)
+	3781396  -  ResidentSetSize of job (KB)
+...
+040 (514474.000.000) 2023-01-26 16:58:56 Started transferring output files
+...
+040 (514474.000.000) 2023-01-26 16:58:56 Finished transferring output files
+...
+005 (514474.000.000) 2023-01-26 16:58:56 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:05:26, Sys 0 00:00:15  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:05:26, Sys 0 00:00:15  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	9745  -  Run Bytes Sent By Job
+	9696  -  Run Bytes Received By Job
+	9745  -  Total Bytes Sent By Job
+	9696  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated Assigned
+	   Cpus                 :     1.06        1        32 
+	   Disk (KB)            :    42          10 380624274 
+	   Gpus (Average)       :                 1         1 "GPU-e747a145"
+	   Memory (MB)          :  3693           1    231251 
+
+	Job terminated of its own accord at 2023-01-26T15:58:56Z.
+...
