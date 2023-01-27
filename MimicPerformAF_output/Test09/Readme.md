@@ -1,5 +1,5 @@
-# Test 08 - Description
-This experiment is considered to be part from the experiments to perform the ablation study where the feasibility of the model and the approach for identification of AF with PPM is evaluated. Hence, the main difference between this test and [Test04], (missing-reference), [Test06](missing-reference) and [Test07](missing-reference) is the number of users that have been used to train and test the network.
+# Test 09 - Description
+This experiment is considered to be part from the experiments to perform the ablation study where the feasibility of the model and the approach for identification of AF with PPM is evaluated. Hence, the main difference between this test and [Test04], (missing-reference), [Test06](missing-reference), [Test07](missing-reference) and [Test08](missing-reference) is the number of users that have been used to train and test the network.
 
 The results are obtained from running a 1-layer CNN for classifying into AF or NON-af users. The split for training and test has been based on splitting **users**. 
 Therefore, a binary classification has taken place. 
@@ -7,12 +7,12 @@ Therefore, a binary classification has taken place.
 The database used in this experiments is MimicPerformAF. 
 
 Database is constructed as:
-* Train (aprox. 45%):
-    + AF: 9 users from 001 to 009
-    + Non_AF: 7 users from 001 to 007
-* Test (aprox. 55%):
-    + AF: 10 users from 010 to 019
-    + Non_AF: 9 users from 008 to 016
+* Train (aprox. 50%):
+    + AF: 10 users from 001 to 010
+    + Non_AF: 8 users from 001 to 008
+* Test (aprox. 50%):
+    + AF: 9 users from 011 to 019
+    + Non_AF: 8 users from 009 to 016
 
 ## Details
 * This test is repeated two times for two different number of epochs

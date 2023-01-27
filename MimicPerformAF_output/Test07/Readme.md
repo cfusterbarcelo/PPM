@@ -1,4 +1,4 @@
-# Test 06 - Description
+# Test 07 - Description
 This experiment is considered to be part from the experiments to perform the ablation study where the feasibility of the model and the approach for identification of AF with PPM is evaluated. Hence, the main difference between this test and [Test04](missing-reference) and [Test06](missing-reference) is the number of users that have been used to train and test the network.
 
 The results are obtained from running a 1-layer CNN for classifying into AF or NON-af users. The split for training and test has been based on splitting **users**. 

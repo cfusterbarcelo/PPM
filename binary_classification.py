@@ -38,7 +38,7 @@ epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 16
-test = 'Test08'
+test = 'Test09'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
