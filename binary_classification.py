@@ -38,7 +38,7 @@ epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 16
-test = 'Test09'
+test = 'Test_Part1'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
@@ -46,11 +46,26 @@ test = 'Test09'
 # test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Train/'
-test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Test/'
-results_path = '/lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/' + test + '/'
-output_path = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/' + test + '/'
+# train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Train/'
+# test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Test/'
+# results_path = '/lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/' + test + '/'
+# output_path = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/' + test + '/'
+# output_file = output_path + test + epochs_str + '-outcome.txt'
+
+# To run it from Windows
+partition = 'Part1'
+train_path = 'D:/Data/PPM/MimicPerformAF_' + partition + '/Train/'
+test_path = 'D:/Data/PPM/MimicPerformAF_' + partition + '/Test/'
+results_path = 'D:/Models/PPM/MimicPerformAF_' + partition + '/results/'
+# Create results_path if it does not exist
+if not os.path.exists(results_path):
+    os.makedirs(results_path)
+output_path = 'D:/Models/PPM/MimicPerformAF_' + partition + '/output/'
+# Create output_path if it does not exist
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 output_file = output_path + test + epochs_str + '-outcome.txt'
+
 
 orig_stdout = sys.stdout
 f = open(output_file, 'w')
