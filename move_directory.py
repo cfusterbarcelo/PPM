@@ -1,6 +1,7 @@
 ''''''
 '''_______________________________________________
-    Python file to move PPM images
+    Python file to move PPM images to create
+    different folds for same database
 __________________________________________________
 ## Author: Caterina Fuster Barceló
 ## Version: 1.0
@@ -9,11 +10,11 @@ __________________________________________________
 __________________________________________________
 
 __________________________________________________
-            For this version 1.4
+            For this version 2.0
 __________________________________________________
 ## Database used: MIMIC PERform AF Dataset
-## Input files: .jpg
-## Output files: .jpg
+## Input files: .png
+## Output files: .png
 __________________________________________________'''
 
 import os

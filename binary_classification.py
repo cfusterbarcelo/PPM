@@ -30,7 +30,7 @@ import os
 import pickle 
 from sklearn.metrics import confusion_matrix
 
-os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+# os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 
 # VARS for each CNN launched to change depending on the DDBB
 epochs_num = 100
@@ -54,9 +54,9 @@ batchsize = 16
 
 # To run it from Windows
 partition = 'Part1'
-train_path = 'D:/Data/PPM/MimicPerformAF_' + partition + '/Train/'
-test_path = 'D:/Data/PPM/MimicPerformAF_' + partition + '/Test/'
-results_path = 'D:/Models/PPM/MimicPerformAF_' + partition + '/results/'
+train_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Train/'
+test_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Test/'
+results_path = 'D:/Models/PPM/MimicPerformAF_10fold/' + partition + '/results/'
 # Create results_path if it does not exist
 if not os.path.exists(results_path):
     os.makedirs(results_path)
@@ -64,7 +64,7 @@ output_path = 'D:/Github/PPM/MimicPerformAF_output/Test_10folds/' + partition + 
 # Create output_path if it does not exist
 if not os.path.exists(output_path):
     os.makedirs(output_path)
-output_file = output_path + test + epochs_str + '-outcome.txt'
+output_file = output_path + partition + epochs_str + '-outcome.txt'
 
 
 orig_stdout = sys.stdout
@@ -183,22 +183,22 @@ def obtain_metrics(conf_m):
     tn_n = np.nan_to_num(tn)
     return fp_n, fn_n, tp_n, tn_n
 
-def plotting_metrics(to_plot, results_path, metric):
+def plotting_metrics(to_plot, output_path, metric):
     plt.figure()
     plt.plot(to_plot)
     plt.title(metric)
     plt.xlabel('epochs')
-    plt.savefig(results_path + metric + epochs_str + '.png')
+    plt.savefig(output_path + metric + epochs_str + '.png')
     plt.close()
 
-def two_plotting_metrics(to_plot1, to_plot2, results_path, metric1, metric2):
+def two_plotting_metrics(to_plot1, to_plot2, output_path, metric1, metric2):
     plt.figure()
     plt.plot(to_plot1, label = metric1)
     plt.plot(to_plot2, label = metric2)
     plt.legend()
     plt.title(metric1 + ' and ' + metric2)
     plt.xlabel('epochs')
-    plt.savefig(results_path + metric1 + '-'+ metric2 + epochs_str + '.png')
+    plt.savefig(output_path + metric1 + '-'+ metric2 + epochs_str + '.png')
     plt.close()
 
 def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, results_path):
@@ -237,7 +237,10 @@ def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, resul
         'frr': frr,
         'frr_mean': np.mean(frr)
     }
-    pkl_file = output_path + dataset_name + '.pkl'
+    if dataset_name == 'testing':
+        pkl_file = 'D:/Models/PPM/MimicPerformAF_10fold/' + 'Part2' + '/results/'+ dataset_name + '.pkl'
+    else: 
+        pkl_file = results_path + dataset_name + '.pkl'
     with open(pkl_file, 'wb') as handle:
         pickle.dump(metrics, handle, protocol=pickle.HIGHEST_PROTOCOL)
     return metrics
@@ -254,13 +257,13 @@ fn = np.asarray(train_history.history['false_negatives'])
 auc = train_history.history['auc']
 train_history.history.keys()
 
-plotting_metrics(auc, results_path, 'auc')
-plotting_metrics(accuracy, results_path, 'accuracy')
-plotting_metrics(val_accuracy, results_path, 'validation accuracy')
-plotting_metrics(loss, results_path, 'loss')
-plotting_metrics(val_loss, results_path, 'validation loss')
-two_plotting_metrics(accuracy, val_accuracy, results_path, 'train_accuracy', 'validation_accuracy')
-two_plotting_metrics(loss, val_loss, results_path, 'train_loss', 'validation_loss')
+# plotting_metrics(auc, output_path, 'auc')
+# plotting_metrics(accuracy, output_path, 'accuracy')
+# plotting_metrics(val_accuracy, output_path, 'validation accuracy')
+# plotting_metrics(loss, output_path, 'loss')
+# plotting_metrics(val_loss, output_path, 'validation loss')
+two_plotting_metrics(accuracy, val_accuracy, output_path, 'train_accuracy', 'validation_accuracy')
+two_plotting_metrics(loss, val_loss, output_path, 'train_loss', 'validation_loss')
 
 training = 'training'
 validation = 'validation'
@@ -272,6 +275,6 @@ validation_metrics = calculating_metrics(train_path, validation, validation, mod
 print(validation_metrics)
 print('===================================================================================')
 
-test_metrics = calculating_metrics(test_path, None, 'testing', model, results_path)
+test_metrics = calculating_metrics(test_path, None, 'testing', model, output_path)
 print(test_metrics)
 print('===================================================================================')
