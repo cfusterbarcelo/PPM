@@ -38,7 +38,7 @@ epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 16
-test = 'Test_Part1'
+# test = 'Test_Part3'
 
 # To run it from the iMac
 # current_dir = pathlib.Path(__file__).resolve()
@@ -60,7 +60,7 @@ results_path = 'D:/Models/PPM/MimicPerformAF_' + partition + '/results/'
 # Create results_path if it does not exist
 if not os.path.exists(results_path):
     os.makedirs(results_path)
-output_path = 'D:/Models/PPM/MimicPerformAF_' + partition + '/output/'
+output_path = 'D:/Github/PPM/MimicPerformAF_output/Test_10folds/' + partition + '/output/'
 # Create output_path if it does not exist
 if not os.path.exists(output_path):
     os.makedirs(output_path)
@@ -252,7 +252,7 @@ tn = np.asarray(train_history.history['true_negatives'])
 fp = np.asarray(train_history.history['false_positives'])
 fn = np.asarray(train_history.history['false_negatives'])
 auc = train_history.history['auc']
-
+train_history.history.keys()
 
 plotting_metrics(auc, results_path, 'auc')
 plotting_metrics(accuracy, results_path, 'accuracy')
