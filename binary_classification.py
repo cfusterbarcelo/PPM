@@ -53,7 +53,7 @@ batchsize = 16
 # output_file = output_path + test + epochs_str + '-outcome.txt'
 
 # To run it from Windows
-partition = 'Part3'
+partition = 'Part6'
 train_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Train/'
 test_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Test/'
 results_path = 'D:/Models/PPM/MimicPerformAF_10fold/' + partition + '/results/'
@@ -238,7 +238,7 @@ def calculating_metrics(dataset_path, dataset_subset, dataset_name, model, resul
         'frr_mean': np.mean(frr)
     }
     if dataset_name == 'testing':
-        pkl_file = 'D:/Models/PPM/MimicPerformAF_10fold/' + 'Part3' + '/results/'+ dataset_name + '.pkl'
+        pkl_file = 'D:/Models/PPM/MimicPerformAF_10fold/' + 'Part6' + '/results/'+ dataset_name + '.pkl'
     else: 
         pkl_file = results_path + dataset_name + '.pkl'
     with open(pkl_file, 'wb') as handle:
