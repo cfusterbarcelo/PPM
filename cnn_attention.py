@@ -1,3 +1,21 @@
+''''''
+'''_______________________________________________
+    Pytorch version of the network. CBAM included. This is the explainable network.
+__________________________________________________
+## Author: Alejandro Guerrero-López
+## Version: 1.0
+## Email: alejandro.guerrero@upm.es
+## Status: Development
+__________________________________________________
+
+__________________________________________________
+            For this version 1.1
+__________________________________________________
+## Database used: MIMIC PERform AF Dataset
+## Input files: model
+## Output files: .png
+__________________________________________________'''
+
 import os
 from PIL import Image
 import torchvision

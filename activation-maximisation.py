@@ -22,9 +22,14 @@ from tf_keras_vis.activation_maximization import ActivationMaximization
 import matplotlib.pyplot as plt
 import numpy as np
 import pathlib
+import yaml
 
-results_path = '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/PPM/MimicPerformAF_output/Test05/'
-model_files =  '/Users/caterina/Library/CloudStorage/GoogleDrive-cafuster@pa.uc3m.es/La meva unitat/COSEC/PPG/Models/Test04_model'
+# Read from yaml:
+with open("./config.yaml", "r") as file:
+        paths = yaml.safe_load(file)
+
+results_path = paths["path"]["results_path"]
+model_files =  paths["path"]["model_files"]
 
 # Load a trained model
 model = tf.keras.models.load_model(model_files)

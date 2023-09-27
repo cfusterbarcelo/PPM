@@ -29,6 +29,7 @@ import sys
 import os
 import pickle 
 from sklearn.metrics import confusion_matrix
+import yaml
 
 # os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 
@@ -38,6 +39,13 @@ epochs_str = str(epochs_num)+'e'
 num_classes = 1
 ddbb = 'MimicPerformAF'
 batchsize = 16
+
+
+
+# Read from yaml:
+with open("./config.yaml", "r") as file:
+        paths = yaml.safe_load(file)
+
 # test = 'Test_Part3'
 
 # To run it from the iMac
@@ -46,21 +54,21 @@ batchsize = 16
 # test_path = str(pathlib.Path(current_dir).parents[1] / 'PPM_DDBB/MimicPerformAF/Test/')
 
 # To run it from Artemisa
-# train_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Train/'
-# test_path = '/lhome/ext/uc3m057/uc3m0571/PPM/DDBB/MimicPerformAF_bu/' + test + '/Test/'
-# results_path = '/lhome/ext/uc3m057/uc3m0571/PPM/Results/MimicPerformAF/' + test + '/'
-# output_path = '/lhome/ext/uc3m057/uc3m0571/PPM/PPM/MimicPerformAF_output/' + test + '/'
+# train_path = paths["path_artemisa"]["train_path"]
+# test_path = paths["path_artemisa"]["test_path"]
+# results_path = paths["path_artemisa"]["results_path"]
+# output_path = paths["path_artemisa"]["output_path"]
 # output_file = output_path + test + epochs_str + '-outcome.txt'
 
 # To run it from Windows
 partition = 'Part6'
-train_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Train/'
-test_path = 'D:/Data/PPM/MimicPerformAF_10fold/' + partition + '/Test/'
-results_path = 'D:/Models/PPM/MimicPerformAF_10fold/' + partition + '/results/'
+train_path = paths["path_windows"]["train_path"]
+test_path = paths["path_windows"]["test_path"]
+results_path = paths["path_windows"]["results_path"]
 # Create results_path if it does not exist
 if not os.path.exists(results_path):
     os.makedirs(results_path)
-output_path = 'D:/Github/PPM/MimicPerformAF_output/Test_10folds/' + partition + '/output/'
+output_path = paths["path_windows"]["output_path"]
 # Create output_path if it does not exist
 if not os.path.exists(output_path):
     os.makedirs(output_path)
