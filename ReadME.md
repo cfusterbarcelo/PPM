@@ -66,7 +66,7 @@ Moreover, by reading the papers proposed, it has been found that the what is cat
 * __binary_classification.py__: The CNN is constructed here. Depending if it is a one layer or a two layer CNN some things are needed and other pieces of code are commented. The results from all the experiments are stored in [MimicPerformAF_output/TestX](https://github.com/cfusterbarcelo/PPM/tree/main/MimicPerformAF_output) . Hence, each TestX folder will include a description file explaining the differences between each of the launched experiments. 
 * __binary_classification.submit__: File needed to run the binary_classification.py file in Artemisa (the server).
 * __activation-maximimsation.py__: Activation Maximisation of a 1-layer CNN is performed in this file. A description of what has been used and the results is provided in its [description file](https://github.com/cfusterbarcelo/PPM/blob/main/MimicPerformAF_output/Test05/Test05-description.md).
-
+* __binary_classification_pre-trained_networks.py__: File added to fine-tune and train Inception ResNet V2 and SE-ResNext 50.
 The [ppm](https://github.com/cfusterbarcelo/PPM/tree/main/images-and-files) folder includes an example of how the PPM resulting images are. These are extracted from the _.dat_ and _.hea_ files included in that same folder which are from one random user from the MIMIC PERform AF Dataset. In fact, a PPM image looks like this:
 
 ![alt text](https://github.com/cfusterbarcelo/PPM/blob/main/images-and-files/ppm0.png)
